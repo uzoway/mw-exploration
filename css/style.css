@@ -1,0 +1,201 @@
+/* Reset and utility class setup */
+
+:root {
+  --white: #faf2e7;
+  --black: #000000;
+  --gutter-width: 1vw;
+  --column: 15;
+  --animation-primary: 0.735s cubic-bezier(0.62, 0.05, 0.01, 0.99);
+  --column-width: calc(calc(100vw - (var(--gutter-width) * 11)) / var(--column));
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('../assets/font/HelveticaNowDisplay-Bold.woff2');
+  font-display: swap;
+  font-weight: 500;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Helvetica Now Display';
+  overflow-y: hidden;
+}
+
+/* Grid layout overlay */
+
+.overlay {
+  opacity: 0;
+  position: fixed;
+  inset: 0 var(--gutter-width);
+  background-image: repeating-linear-gradient(to right,
+      #d2d6f9,
+      #d2d6f9 calc((100% / var(--column)) - var(--gutter-width)),
+      transparent calc((100% / var(--column)) - var(--gutter-width)),
+      transparent calc(100% / var(--column)));
+  background-position: left top;
+  background-size: calc(100% + var(--gutter-width)) 100%;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+}
+
+/* Page styling */
+.c-nav {
+  position: fixed;
+  width: 100%;
+  padding-inline: var(--gutter-width);
+  z-index: 2;
+}
+
+.c-nav_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: uppercase;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: clamp(0.875rem, 0.8393rem + 0.1786vw, 1rem);
+}
+
+.c-nav_container .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.c-nav_container .nav-logo .nav-line {
+  width: clamp(5.625rem, 4.9464rem + 3.3929vw, 8rem);
+  height: .35rem;
+  background-color: var(--black);
+  transform: scaleX(0);
+}
+
+.c-nav_container .nav-logo .nav-text {
+  font-size: clamp(2rem, 1.7143rem + 1.4286vw, 3rem);
+}
+
+.c-nav_container .nav-timezone,
+.c-nav_container .nav-list .nav-list_link {
+  color: rgb(138, 138, 138);
+}
+
+.c-nav_container .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0;
+}
+
+.c-nav_container .nav-list .nav-list_item {
+  list-style: none;
+}
+
+.c-nav_container .nav-list .nav-list_link {
+  position: relative;
+}
+
+.c-nav_container .nav-list .nav-list_link::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: black;
+  left: 0;
+  bottom: -.15rem;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--animation-primary);
+}
+
+.c-nav_container .nav-list .nav-list_link:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.c-nav_container .nav-list .nav-list_link.cc-is-current {
+  color: black;
+}
+
+.c-main {
+  width: 100vw;
+  height: 100svh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* background-color: red; */
+}
+
+.c-main .c-main_container {
+  padding: var(--gutter-width);
+  width: 100%;
+  height: 100%;
+}
+
+.c-hero {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.c-hero .fixed-scroll_text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  text-transform: uppercase;
+  font-size: clamp(0.875rem, 0.8393rem + 0.1786vw, 1rem);
+  color: rgb(138, 138, 138);
+}
+
+.c-hero .images-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(14rem, 14rem, 14rem);
+  height: clamp(48vh, 50vh, 50vh);
+}
+
+.c-hero .images-wrapper .image-wrap_item {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(200%);
+  overflow: hidden;
+}
+
+[data-text-reveal] {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+  transform: translateY(100%);
+  display: inline-block;
+}
+
+[data-text-divider] {
+  transform: scale(0);
+}
+
+/* Responsive design */
+@media (max-width: 750px) {
+  :root {
+    --column: 6;
+    --gutter-width: 2vw;
+  }
+
+  .c-hero .images-wrapper {
+    width: 6rem;
+    height: 24vh;
+  }
+
+  .c-hero .images-wrapper .image-wrap_item {
+    transform: translateY(300%);
+  }
+}
