@@ -1,0 +1,313 @@
+/* section {
+  float: unset !important;
+}
+
+/* Even Component */
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) {
+    padding-inline: 3rem;
+    max-width: 90rem;
+    background: transparent;
+    margin: 4rem auto !important;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary {
+    background: transparent;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary h2 {
+    text-transform: uppercase;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .btn {
+    background: transparent;
+    color: black;
+    border: 1px solid brown;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .img-block {
+    position: relative;
+    overflow: visible;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .img-block::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 105%;
+    height: 105%;
+    border: 3px solid white;
+    z-index: -1;
+    mix-blend-mode: difference;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .img-block::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 0%;
+    transform: translate(10%, -50%);
+    width: 70%;
+    height: 120%;
+    background: #141414c2;
+    z-index: -2;
+}
+
+@media (max-width: 769px) {
+
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .text-block,
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .text-block .text-block-wrapper {
+        padding: 0;
+    }
+
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(even) .theme-secondary .basic-block-wrapper {
+        gap: 3rem;
+    }
+}
+
+/* Odd Component */
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) {
+    padding-inline: 3rem;
+    max-width: 90rem;
+    background: transparent;
+    margin: 4rem auto !important;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary {
+    background: transparent;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary h2 {
+    text-transform: uppercase;
+    color: black;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary p {
+    color: black;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .btn {
+    background: transparent;
+    color: black;
+    border: 1px solid brown;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .img-block {
+    position: relative;
+    overflow: visible;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .img-block::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 105%;
+    height: 105%;
+    border: 3px solid white;
+    z-index: -1;
+    mix-blend-mode: difference;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .img-block::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 0%;
+    transform: translate(-10%, -50%);
+    width: 75%;
+    height: 120%;
+    background: #141414c2;
+    z-index: -2;
+}
+
+@media (max-width: 769px) {
+
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .text-block,
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .text-block .text-block-wrapper {
+        padding: 0;
+    }
+
+    section[id*="TitleAndSummary"]:not(.background-image):nth-child(odd) .theme-secondary .basic-block-wrapper {
+        gap: 3rem;
+    }
+}
+
+/* Button Hover Animation */
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn {
+    background: transparent;
+    color: black;
+    transition: background 0.25s ease-out;
+    position: relative;
+    border: 1px solid black;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn:hover {
+    background: rgb(228, 228, 228);
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn::before,
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    transition: clip-path 0.25s ease-out;
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn::before {
+    top: 0;
+    left: 0;
+    clip-path: polygon(0 0, 0 0, 0 0);
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn::after {
+    bottom: 0;
+    right: 0;
+    clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn:hover::before {
+    clip-path: polygon(0 0, 0% 100%, 100% 0);
+}
+
+section[id*="TitleAndSummary"]:not(.background-image) .theme-secondary .btn:hover::after {
+    clip-path: polygon(0 100%, 100% 0, 100% 100%);
+}
+
+
+.faqs_folder {
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+    transition: transform .5s cubic-bezier(0.86, 0, 0.07, 1);
+}
+
+.faqs_folder::before {
+    content: "";
+    position: absolute;
+    width: 140px;
+    height: 2.875rem;
+    background: inherit;
+    transform: translateY(0);
+    top: 0;
+    left: 1.5rem;
+    clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 0% 0%);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    transition: opacity .35s ease, transform .35s ease;
+}
+
+.faqs_folder.uc-open::before {
+    transform: translateY(-1.25rem);
+}
+
+.faqs_folder:nth-of-type(1) {
+    background: #5CD1F4;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.faqs_folder:nth-of-type(2) {
+    background: #F4FFF1;
+    width: 95%;
+    height: 95%;
+    z-index: 2;
+}
+
+.faqs_folder:nth-of-type(3) {
+    background: #FBC56F;
+    width: 90%;
+    height: 90%;
+    z-index: 3;
+}
+
+.faqs_folder:nth-of-type(4) {
+    background: #FF7646;
+    width: 85%;
+    height: 85%;
+    z-index: 4;
+}
+
+.faqs_folder:nth-of-type(5) {
+    background: #BEEDFB;
+    width: 80%;
+    height: 80%;
+    z-index: 5;
+}
+
+.faqs_folder:nth-of-type(1):hover,
+.faqs_folder:nth-of-type(1).uc-open {
+    transform: translateY(0rem);
+}
+
+.faqs_folder:nth-of-type(2):hover,
+.faqs_folder:nth-of-type(2).uc-open {
+    transform: translateY(-3rem);
+}
+
+.faqs_folder:nth-of-type(3):hover,
+.faqs_folder:nth-of-type(3).uc-open {
+    transform: translateY(-4rem);
+}
+
+.faqs_folder:nth-of-type(4):hover,
+.faqs_folder:nth-of-type(4).uc-open {
+    transform: translateY(-5rem);
+}
+
+.faqs_folder:nth-of-type(5):hover,
+.faqs_folder:nth-of-type(5).uc-open {
+    transform: translateY(-6rem);
+}
+
+
+
+@media (max-width: 767px) {
+    .swiper-button-next {
+        top: auto;
+        bottom: 0px;
+        width: 2.5rem;
+    }
+
+    .swiper-button-next:hover {
+        background-color: var(--neutral_dark-green);
+    }
+
+    .swiper-button-prev {
+        top: auto;
+        bottom: 0px;
+        width: 2.5rem;
+    }
+
+    .swiper-button-prev:hover {
+        background-color: var(--neutral_dark-green);
+    }
+
+    .swiper-button_arrow {
+        width: 0.875rem;
+    }
+}
+
+
+<script defer src =
+        "https://cdn.prod.website-files.com/645e0e1ff7fdb6dc8c85f3a2/64a5544a813c7253b90f2f50_lenis-offbrand.txt"
+        data-id-scroll
+        data-autoinit="true"
+        data-duration="1.8"
+        data-orientation="vertical"
+        data-smoothWheel="true"
+        data-smoothTouch="false"
+        data-touchMultiplier = "1"
+        data-easing="(t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t))"
+        data-useOverscroll="true"
+        data-useControls="true"
+        data-useAnchor="true"
+        data-useRaf="true"
+        data-infinite="false" >
+</script>

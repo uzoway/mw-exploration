@@ -1,0 +1,21 @@
+/* Hide text elements before animation */
+/* [data-text-split="true"] {
+    opacity: 1;
+    visibility: hidden;
+} */
+
+/* This class will be added by JavaScript after split to maintain proper height */
+/* .split-parent {
+    overflow: hidden;
+    visibility: visible;
+} */
+
+/* Style for each line wrapper */
+/* .split-line {
+    overflow: hidden;
+    will-change: transform;
+} */
+
+/* [data-tab-container] {
+    transform: scale(0);
+} */

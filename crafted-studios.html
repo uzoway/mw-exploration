@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Animated Tabs</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: top;
+        min-height: 100vh;
+        background: #f0f0f0;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+
+      .tabs-container {
+        position: relative;
+        width: 540px;
+        height: 250px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .tabs-nav {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f8f8;
+        border-bottom: 1px solid #eee;
+      }
+
+      .tab-button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background: none;
+        cursor: pointer;
+        font-size: 1rem;
+        color: #666;
+        transition: color 0.3s;
+      }
+
+      .tab-button.is-active {
+        color: red;
+        font-weight: 600;
+      }
+
+      .tab-content {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 64px);
+        opacity: 0;
+        padding: 2rem;
+        visibility: hidden;
+      }
+
+      .tab-content.is-active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        background: #f0f0f0;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .close-button.is-visible {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Sample content styling */
+      .home-content {
+        background: linear-gradient(45deg, #f0f0f0, #fff);
+      }
+
+      .about-content {
+        background: linear-gradient(45deg, #f5f5f5, #fff);
+      }
+
+      .work-content {
+        background: linear-gradient(45deg, #f8f8f8, #fff);
+      }
+
+      /* Responsive Breakpoints */
+      @media (max-width: 1024px) {
+        .tabs-container {
+          width: 440px !important;
+          height: 200px !important;
+        }
+
+        .tabs-container.about-active {
+          width: 500px !important;
+          height: 540px !important;
+        }
+
+        .tabs-container.work-active {
+          width: 720px !important;
+          height: 540px !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .tabs-container {
+          width: 320px !important;
+          height: 180px !important;
+        }
+
+        .tabs-container.about-active {
+          width: 360px !important;
+          height: 440px !important;
+        }
+
+        .tabs-container.work-active {
+          width: 100% !important;
+          height: 440px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs-container">
+      <nav class="tabs-nav">
+        <button class="tab-button is-active" data-tab="home">Home</button>
+        <button class="tab-button" data-tab="about">About</button>
+        <button class="tab-button" data-tab="work">Work</button>
+      </nav>
+
+      <div class="tab-content home-content is-active" data-tab="home">
+        <h2>Home Content</h2>
+        <p>Welcome to the home tab!</p>
+      </div>
+
+      <div class="tab-content about-content" data-tab="about">
+        <h2>About Content</h2>
+        <p>This is the about section with more content...</p>
+      </div>
+
+      <div class="tab-content work-content" data-tab="work">
+        <h2>Work Content</h2>
+        <p>Here's our extensive work portfolio...</p>
+      </div>
+
+      <button class="close-button">Close</button>
+    </div>
+
+    <script>
+      const tabsContainer = document.querySelector(".tabs-container");
+      const tabButtons = document.querySelectorAll(".tab-button");
+      const tabContents = document.querySelectorAll(".tab-content");
+      const closeButton = document.querySelector(".close-button");
+
+      // Spring animation configuration
+      const springConfig = {
+        mass: 1,
+        stiffness: 100,
+        damping: 15,
+      };
+
+      // Custom elastic ease for GSAP
+      const customSpring = gsap.parseEase(
+        `elastic.out(${springConfig.mass},${springConfig.stiffness / 100},${
+          springConfig.damping / 100
+        })`
+      );
+
+      const dimensions = {
+        home: { width: 540, height: 250 },
+        about: { width: 600, height: 640 },
+        work: { width: 1399, height: 640 },
+      };
+
+      function switchTab(targetTab) {
+        // Update active states
+        tabButtons.forEach((btn) => {
+          btn.classList.toggle("is-active", btn.dataset.tab === targetTab);
+        });
+
+        // Handle content transition
+        const currentContent = document.querySelector(".tab-content.is-active");
+        const targetContent = document.querySelector(
+          `.tab-content[data-tab="${targetTab}"]`
+        );
+
+        // Fade out current content
+        gsap.to(currentContent, {
+          opacity: 0,
+          duration: 0.3,
+          onComplete: () => {
+            currentContent.classList.remove("is-active");
+            currentContent.style.visibility = "hidden";
+          },
+        });
+
+        // Animate container dimensions
+        gsap.to(tabsContainer, {
+          width: dimensions[targetTab].width,
+          height: dimensions[targetTab].height,
+          duration: 0.6,
+          ease: customSpring,
+        });
+
+        // Update container classes for responsive styling
+        tabsContainer.classList.remove("about-active", "work-active");
+        if (targetTab !== "home") {
+          tabsContainer.classList.add(`${targetTab}-active`);
+        }
+
+        // Fade in new content with delay
+        gsap.to(targetContent, {
+          opacity: 1,
+          visibility: "visible",
+          duration: 0.3,
+          delay: 0.3,
+          onStart: () => {
+            targetContent.classList.add("is-active");
+          },
+        });
+
+        // Handle close button visibility
+        gsap.to(closeButton, {
+          opacity: targetTab === "home" ? 0 : 1,
+          visibility: targetTab === "home" ? "hidden" : "visible",
+          duration: 0.3,
+          delay: 0.6,
+        });
+      }
+
+      // Event Listeners
+      tabButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const targetTab = button.dataset.tab;
+          if (!button.classList.contains("is-active")) {
+            switchTab(targetTab);
+          }
+        });
+      });
+
+      closeButton.addEventListener("click", () => {
+        switchTab("home");
+      });
+    </script>
+  </body>
+</html>

@@ -1,16 +1,16 @@
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
-    margin: 0;
+  margin: 0;
 }
 
 body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 img,
@@ -18,17 +18,17 @@ picture,
 video,
 canvas,
 svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 input,
 button,
 textarea,
 select {
-    font: inherit;
+  font: inherit;
 }
 
 p,
@@ -38,11 +38,11 @@ h3,
 h4,
 h5,
 h6 {
-    overflow-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 p {
-    text-wrap: pretty;
+  text-wrap: pretty;
 }
 
 h1,
@@ -51,14 +51,30 @@ h3,
 h4,
 h5,
 h6 {
-    text-wrap: balance;
+  text-wrap: balance;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 #root,
 #__next {
-    isolation: isolate;
+  isolation: isolate;
+}
+
+.cc-cta-link.is-secondary:hover {
+  background: var(--neutral-950);
+}
+
+.cc-cta-link.is-secondary:hover .cc-cta-text.is-secondary {
+  color: var(--neutral-50);
+}
+
+.cc-cta-link.is-secondary .cta-button-wrap.is-secondary {
+  transition: filter 0.5s ease;
+}
+
+.cc-cta-link.is-secondary:hover .cta-button-wrap.is-secondary {
+  filter: invert(0%);
 }
